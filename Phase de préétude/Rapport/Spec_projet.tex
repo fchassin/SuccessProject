@@ -1,0 +1,175 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage{multirow}
+\usepackage{float}
+\usepackage[utf8]{inputenc}  
+\usepackage[T1]{fontenc}
+
+%Debut du document
+\renewcommand{\contentsname}{Table des matières}
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% PAGE DE GARDE  & TOC %
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+\hfill
+\end{center}
+\vspace{3cm}
+\begin{center}
+{\huge \textbf{Rapport de spécifications}} \\
+\vspace{\baselineskip}
+{\LARGE \textsc{Projet ?} \\
+\textit{Vers la route du succès}  \\
+\vspace{\baselineskip}
+2015-2016}
+\vfill
+{\large
+Frank \textsc{Chassing} \& Luc \textsc{Schmitt}}
+\vfill
+\end{center}
+\thispagestyle{empty}
+
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{3}
+\makeatletter
+
+% page vide
+\newpage \thispagestyle{empty}
+\null
+
+\newpage
+\tableofcontents
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%
+% DEBUT ECRITURE     %
+%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Introduction \markboth{INTRODUCTION}{}}
+\addcontentsline{toc}{section}{Introduction}
+\#useless
+
+\section{Contexte}
+L'idée de ce projet est née par l'envie de vouloir tout faire dans sa vie. En effet, de nombreuses personnes ressentent cette envie de vouloir réaliser le plus de choses possibles dans sa vie et veulent ainsi profiter pleinement de celle-ci. Nous avons donc penser dans un premier temps à créer une liste importante de succès humains que les utilisateurs réaliseraient pour débloquer des récompenses. Cependant, notre idée ne s'arrête pas là : en plus de pouvoir réaliser ces succès, les utilisateurs pourront partager leurs vidéos, donner leurs avis sur des vidéos d'autres utilisateurs, et participer à l'évolution de l'application. Nous pouvons parler d'une sorte de plateforme sociale de vidéos où l'utilisateur devra se surpasser pour améliorer de façon importante son profil.
+L'application serait destinée aux personnes de 16 à 35 ans.
+
+\section{Objectifs}
+Notre objectif est de réaliser une application multiplateforme, à la fois disponible sur ordinateurs, tablettes et smartphones. Nous souhaitons avant tout que l'application soit fonctionnelle et intuitive afin d'accueillir un plus grand nombre d'utilisateurs. Nous aimerions mettre en place un système communautaire afin de faire évoluer notre application suivant les différents avis et idées des utilisateurs. Une base solide de succès devra être mise en place pour rendre attractive notre application. Nous devons également prévoir les différents coûts et réfléchir à comment les prendre en charge. ~\
+
+D'un point de vue utilisateur,  l'objectif sera pour lui de réaliser des challenges personnels et de prouver qu'il est capable de réaliser l'ensemble des succès. Ainsi, l'utilisateur sera amener à se surpasser et à essayer de nouvelles choses. Le réseau social apportera un esprit de compétition mais également éveillera la curiosité d'autres utilisateurs. La plateforme de vidéos et d'images sera un moyen de découvrir et de regarder des challenges réalisés par d'autres utilisateurs.
+
+\section{Fonctionnalités}
+
+\subsection{Côté utilisateur}
+
+\subsubsection{Plateforme sociale}
+
+\paragraph{Profil}~\
+
+Chaque utilisateur possèdera un profil présentant différentes données : Pseudo, avatar, nom, prénom, date de naissance, pays, région, ville, date d'inscription. Ces données pourront être seulement consulter et modifier par l'utilisateur.
+
+\paragraph{Système d'amis}~\
+
+Nous souhaitons mettre en place un système d'amitié permettant de retrouver plus facilement ses amis afin de voir leurs vidéos ou bien pour les défier sur un challenge. Le système consisterait à posséder des chaînes amies. Ce système d'amitié pourra être mis en place dans un premier temps via Facebook, puis il sera possible d'ajouter une chaîne amie directement depuis notre application. 
+
+\paragraph{Fil d'actualités}~\
+
+La page d'accueil comportera une sorte de fil d'actualités de vidéos ou d'images présentant les vidéos ou images les plus regardées par exemple. Nous souhaiterions également que chaque chaîne possède un fil d'actualités permettant ainsi aux autres utilisateurs de publier des messages, de partager une vidéo ou une image, ou même de défier la chaîne.
+
+\paragraph{Notifications}~\
+
+Des notifications devront être mises en place pour avertir l'utilisateur d'une publication, d'un partage de vidéos ou bien d'un nouveau commentaire sur une de ses vidéos.
+
+\paragraph{Paramètres}~\
+
+Une zone de paramètre sera présente et assurera notamment la gestion de la confidentialité.
+
+\subsubsection{Choix et réalisation des succès}
+
+\paragraph{Choix des succès}~\
+
+Afin de choisir un succès, l'utilisateur possèdera deux moyens pour atteindre un succès voulu :
+\begin{itemize}
+\item Parcourir les succès via la zone recensant l'ensemble des succès et choisir celui désiré ;
+\item Effectuer une recherche de succès via une barre de recherche avec plusieurs critères (catégories, nom, titre, ornement, difficulté).
+\end{itemize}
+
+\paragraph{Réalisation}~\
+
+Après avoir choisi son succès, l'utilisateur devra téléchargé une vidéo ou une image justifiant la réussite de son succès ou bien filmer directement une vidéo. Puis l'utilisateur envoie sa justification en validation.\\
+A noter qu'il sera également possible de filmer puis par la suite de classer sa vidéo et de l'envoyer en validation.
+
+\subsubsection{Validation des succès}
+
+\paragraph{Confirmation}~\
+
+Pour être validée, une vidéo devra recevoir un certain nombre de vote positif de la part de la communauté. La page de validation génèrera une vidéo ou une image aléatoire puis après visionnage de celle-ci, les utilisateurs devront juger si la vidéo valide le succès ou non. Ils pourront également signaler la vidéo pour contenu abusif et dans ce cas là, la vidéo devra être modérée. Au bout d'un certain nombre significatif de votes, la vidéo sera soit mise en ligne et le succès sera validé, soit elle sera supprimée et la succès devra être à refaire.
+A noter que les vidéos pourront apparaître de façon anonyme ou non.
+
+\paragraph{Système de protection}~\
+
+Certaines mesures devront être prises afin qu'une vidéo ne soit pas validable par une chaîne ami et que les utilisateurs ne valident pas une vidéo sans l'avoir vue.
+
+\subsubsection{Partage et visionnage des médias}
+
+\paragraph{Partage}~\
+
+Chaque vidéo et image possèdera un bouton partage qui permettra de choisir une chaîne sur laquelle poster la vidéo partagée. La vidéo sera ensuite affichée sur le fil d'actualité de la chaîne. 
+
+\paragraph{Visionnage}~\
+
+Pour regarder une vidéo il suffit de cliquer sur le lien de la vidéo ou bien d'effectuer une recherche via la barre de recherche de vidéo. La page de visionnage sera composée d'un lecteur permettant le visionnage de la vidéo, du succès associé, du nombre de vues, d'un système de notation, de commentaires, et de vidéos associées (même genre ou même auteur).
+En ce qui concerne les commentaires, il sera possible de rédiger, de modifier, de répondre ou bien de supprimer. Nous souhaiterions ajouter un système de notation des commentaires tel que le sytème de Reddit.
+
+\subsubsection{Ornements et titres}
+
+La réussite d'un ensemble de succès mènera à l'acquisition d'ornements ou de titres. Un ornement est considéré comme un skin de chaîne (distinction graphique). Un titre est une phrase permettant de donner un certain statut à la chaîne. Chaque chaîne sera alors doté d'un ornement et d'un titre que l'utilisateur peut choisir selon ceux acquis. Chaque chaîne aura également une liste des ornements et titres obtenus et aura également un historique des succès accomplis. Le rôle des ornements et des titres est de mettre en valeur sa chaîne et montrer son dévouement quant à la réalisation des succès.
+
+\subsubsection{Inscription / Connexion}
+
+\begin{itemize}
+\item Inscription : formulaire possédant certains critères tels que le pseudo, mot de passe, email, date de naissance, captcha, conditions générales et la validation de l'email et du mot de passe. Il y aura également une validation de l'inscription via le lien d'un mail reçu.
+\item Connexion : Formulaire interne à la page d'accueil possédant deux champs (Pseudo/Email et Mot de passe). Par ailleurs, il y aura une section "mot de passe oublié".
+\item Mot de passe oublié : possibilité de récupérer son mot de passe via son mail ou son pseudo. Ainsi un nouveau mot de passe sera envoyer par mail. En cas de problème, consulter le support.
+
+\subsubsection{Participation communautaire}
+
+La participation communautaire se fera via les commentaires, les likes, la validation des vidéos et images, la proposition de succès et une zone de boîte à idée. Ces différents éléments permettront l'évolution de l'application. 
+
+\subsubsection{Classement}
+
+Différents classement seront affichés sur une sorte de ladder : Classement par points de succès, par nombre de vues, par catégorie, etc.
+
+\end{itemize}
+
+\subsection{Côté développeur}
+
+Différents points devront être gérés par les administrateurs :
+\begin{itemize}
+\item Modération des vidéos à contenu inaproprié (vulgaire, raciste, homophobe, pornographique, violent, etc.)
+\item Support (FAQ, forum, ...)
+\item Modération communautaire (Système Reddit)
+\item Rapport de bugs
+\end{itemize}
+
+\section{Spécifications techniques}
+\subsection{Plateforme}
+\subsection{Architecture}
+\subsection{Hébergement}
+\subsection{Sécurité}
+\subsection{Solution de paiement :D}
+\subsection{Langages}
+\subsection{Etc}
+\section{Spécifications administratives}
+\subsection{Coûts}
+\subsection{Conditions / Clauses}
+\subsection{Propriété}
+\subsection{Etc}
+\section{Planification}
+
+
+\section*{Conclusion \markboth{Conclusion}{}}
+\addcontentsline{toc}{section}{Conclusion}
+
+\end{document}
