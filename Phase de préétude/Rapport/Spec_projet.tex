@@ -154,11 +154,62 @@ Différents points devront être gérés par les administrateurs :
 \end{itemize}
 
 \section{Spécifications techniques}
-\subsection{Plateforme}
-\subsection{Architecture}
+\subsection{Plateformes}
+Nous aimerions avant tout que notre application web soit adaptée à tous les navigateurs et soit responsive. Ainsi à défaut de vouloir télécharger les applications mobiles, un utilisateur pourra utiliser l'application via son navigateur mobile. Nous espérons notamment développer une application iOS ainsi qu'une application Android.
+
+\subsection{Architecture du site web}
+
+\subsubsection{Header}
+
+Chaque page possèdera un header contenant un récapitulatif de l'utilisateur connecté ou bien s'il n'est pas connecté, nous retrouverons un accès à un formulaire pour s'inscrire ou se connecter. Il faut également faire savoir pourquoi il est intéressant aux visiteurs de s'inscrire. Dans le header nous aurons également une barre de recherche de vidéos, images ou bien succès. Le logo de l'application sera bien évidemment apparant dans ce header.~\
+
+\subsubsection{Page d'accueil}
+
+La page d'accueil recensera des listes de succès (les plus accomplis ou autres), des vidéos à la une (populaires, ayant le plus de vues, par catégorie, etc.). Si un utilisateur est connecté, il aura également un accès direct aux chaînes auxquelles il s'est abonné et à ses chaînes amies.
+
+\subsubsection{Page d'inscription}
+
+La page d'inscription sera composé d'un formulaire ayant les champs suivants : Pseudo, Email, confirmation Email, Mot de passe, confirmation Mot de passe, date de naissance, captcha, conditions générales.
+
+\subsubsection{Page de connexion}
+
+une zone de connexion sera interne à toutes les pages et possèdera un formulaire ayant les champs suivants : Pseudo/Mail, Mot de passe, Mot de passe oublié.
+
+\subsubsection{Page de paramètres}
+
+La page de paramètres répertoriera les données personnelles de l'utilisateur. Celui-ci pourra modifier ces différentes données via cette page. L'utilisateur aura également un accès aux paramètres de l'application.
+
+\subsubsection{Page d'une chaîne}
+
+Nous retrouverons plusieurs onglets : 
+\begin{itemize}
+\item Un onglet détaillant le fil d'actualités de la chaîne ;
+\item Un onglet montrant l'ensemble des vidéos récemment postées de la chaîne ;
+\item Un historique des succès réalisés, des ornements et titres obtenus.
+\item Des statistiques des succès réalisés
+\item La possibilité de partager la chaîne ou de l'ajouter comme chaîne amie ou chaîne abonnée.
+\end{itemize}
+
+\subsubsection{Page de téléchargement de médias}
+
+La page de téléchargement de média permet d'envoyer une vidéo ou une image pour valider un succès. Elle sera composée d'un moyen d'ajouter une vidéo ou de prendre une vidéo puis de différents champs pour décrire la vidéo. Il y aura également la possibilité de sauvegarder la vidéo en attendant de pouvoir la classer plus tard.
+
+\subsubsection{Page des succès}
+
+La page des succès comportera une liste de succès recommandés et répertoriera toutes les catégories et sous catégories comportant toutes les listes des succès. Nous pourrons également effectuer une recherche de succès via cette page.
+
+\subsubsection{Page de validation}
+
+La page de validation possèdera une vidéo ou une image générée aléatoirement puis également trois différents boutons permettant de valider, de refuser ou de signaler le média. La vidéo possèdera le nom de la chaîne et différentes données suivant la confidentialité choisie.
+
+\subsubsection{Page d'une vidéo}
+
+Pour lire une vidéo, nous aurons une page possédant un lecteur. Les utilisateurs pourront commenter, liker, et voir la vidéo. Nous retrouverons aussi une liste de vidéos associées.
+
+\subsection{Base de données}
 \subsection{Hébergement}
 \subsection{Sécurité}
-\subsection{Solution de paiement :D}
+\subsection{Solution de financement}
 \subsection{Langages}
 \subsection{Etc}
 \section{Spécifications administratives}
