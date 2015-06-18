@@ -4,6 +4,8 @@
 \usepackage[utf8]{inputenc}  
 \usepackage[T1]{fontenc}
 
+
+
 %Debut du document
 \renewcommand{\contentsname}{Table des matières}
 \begin{document}
@@ -207,6 +209,130 @@ La page de validation possèdera une vidéo ou une image générée aléatoireme
 Pour lire une vidéo, nous aurons une page possédant un lecteur. Les utilisateurs pourront commenter, liker, et voir la vidéo. Nous retrouverons aussi une liste de vidéos associées.
 
 \subsection{Base de données}
+
+L'Architecture et l'organisation de la base de donnée devra suivre un plan rigoureusement décidé et décrit dans ce paragraphe.
+
+Nous allons tenter de respecter au plus proche la 3eme forme de normalisation des Bases de données
+
+\begin{itemize}
+\item Toutes les données sont atomiques 
+\item Chaque champ contient une valeure scalaire (pas de liste de valeurs, etc)
+\item Les valeurs sont non répétitives
+\item Chaque attribut n'appartenant pas à la clé doit se trouver dans une table différente (ForeignKey)
+\item Les attribus qui ne dépendent pas de la clé ne dépendent pas d'atribus ne faisant pas non plus partis de la clé (les attribus sont complètement indépendant les uns des autres), Exemple : Le pays ne dépend pas de l'utilisateur mais de la ville ou il habite.
+\item Les valeurs sont constantes dans le temps (Seul point complexe pour le nombre de vues, vote, commentaires)
+\end{itemize}
+
+\subsubsection{Table Users}
+
+\begin{center}
+\begin{tabular}{| c | c | c | c | }
+\hline
+Colonne & iduser & pseudo & password \\ \hline
+Définition & Index, Cléf Primaire & Pseudo de l'utilisateur & Mot de passe\\ \hline
+Type & int & text & text(sha2(256bit))\\ \hline
+Exemple & 1 & Fchassing & 77de[...]092  \\ \hline
+... & ... & ... & ... \\
+\end{tabular}
+\end{center}
+
+\subsubsection{Table Profils}
+
+\begin{center}
+\begin{tabular}{| c | c | p{3cm} | c | c |}
+\hline
+Colonne & index &iduser & city & birthdate \\ \hline
+Définition & Index, Cléf Primaire & Cléf \'Etrangère Lié à la table Users & Ville & date de naissance\\ \hline
+Type & int & int & text & date\\ \hline
+Exemple & 1 & 1 & rennes & 03 07 1993  \\ \hline
+... & ... & ... & ... & ... \\
+\end{tabular}
+\end{center}
+
+
+\begin{center}
+\begin{tabular}{| c | c | c | c | }
+\hline
+-> & email & successpoints & nbsuccessdone\\ \hline
+-> & Email de l'utilisateur & Nb dePoint de succes & Nb de succès fait\\ \hline
+-> & text & int & int\\ \hline
+-> & fchassing@gmail.com & 1029 & 10\\ \hline
+... & ... & ... & ... \\
+\end{tabular}
+\end{center}
+
+\subsubsection{Table Medias}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+Colonne    & idmedia   & idtype            & path               & auteurid  & description             \\ \hline
+Définition & Index, PK & Type de video, FK & Lien vers la video & Auteur FK & Description de la video \\ \hline
+Type       & int       & int               & text               & int       & text                    \\ \hline
+...        & ...       & ...               & ...                & ...       & ...                    
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+-\textgreater & title             & viewnb         & successid             \\ \hline
+-\textgreater & Titre de la video & Nombre de vues & Id du succès associer, FK \\ \hline
+-\textgreater & text              & unsigned int   & unsigned int          \\ \hline
+...           & ...               & ...            & ...                  
+\end{tabular}
+\end{table}
+
+\subsubsection{Table SuccessList}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+Colonne     & successid & title           & description           & videoexemple & nbpts     \\ \hline
+Description & Index, PK & titre du succès & description du succes & Id Video, FK & pts donné \\ \hline
+Type        & int       & text            & text                  & unsigned int & int       \\ \hline
+...         & ...       & ...             & ...                   & ...          & ...      
+\end{tabular}
+\end{table}
+
+\begin{itemize}
+\item categoryid : catégorie du succès : unsigned int, ForeignKey.
+\end{itemize}
+
+\subsubsection{Table SuccessDone}
+
+\begin{itemize}
+\item successdoneid : index, Primary Key
+\item stateid : id de l'état du succès : unsigned int : ForeignKey 
+\item date : Date de réussite du succès : DATE.
+\item autorid : Id de l'utilisateur qui a réussi le succès : unsigned int ; ForeignKey
+\item successid : Id du succès associé : unsigned int ; ForeignKey
+\item mediaid : Id du Média associé au succès ; unsigned int : ForeignKey
+\end{itemize}
+
+\subsubsection{Table Comments}
+
+\begin{itemize}
+\item commentid : Index, PrimaryKey : unsigned int.
+\item date : date du poste du commentaire : DATE.
+\item content : Contenus du commentaire : text.
+\item rating : Système de vote reddit (classement en fonction du nombre de votes positif si total négatif on ne l'affiche pas et il est signaler aux modérateurs) : int2.
+\item ...
+\end{itemize}
+
+\subsubsection{Table Categories}
+
+\begin{itemize}
+\item idcategory : Index, PrimaryKey : unsigned int.
+\item title : titre de la cartégorie : text.
+\item description : description rapide de la catégorie : text.
+\end{itemize}
+
+\subsubsection{Autres Tables}
+
 \subsection{Hébergement}
 \subsection{Sécurité}
 \subsection{Solution de financement}
