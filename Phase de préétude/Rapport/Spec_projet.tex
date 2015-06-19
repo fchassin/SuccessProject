@@ -234,17 +234,6 @@ Tout en évitant le plus possible les tables obèses, on gardera une cohérence 
 \item lastip : dernière ip de connexion : IP(type ip de postgresql)
 \end{itemize}
 
-\begin{center}
-\begin{tabular}{| c | c | c | c | }
-\hline
-Colonne & iduser & pseudo & password \\ \hline
-Définition & Index, Cléf Primaire & Pseudo de l'utilisateur & Mot de passe\\ \hline
-Type & int & text & text(sha2(256bit))\\ \hline
-Exemple & 1 & Fchassing & 77de[...]092  \\ \hline
-... & ... & ... & ... \\
-\end{tabular}
-\end{center}
-
 \subsubsection{Table Profils}
 
 \begin{itemize}
@@ -255,29 +244,6 @@ Exemple & 1 & Fchassing & 77de[...]092  \\ \hline
 \item city : Ville de l'utilisateur : text.
 \item successpoints : Nombre de point de succès de l'utilisateur, est recalculé à la connexion de l'utilisateur, la réussite d'un succes (validation), "à la demande de l'utilisateur ?".
 \end{itemize}
-
-\begin{center}
-\begin{tabular}{| c | c | p{3cm} | c | c |}
-\hline
-Colonne & idprofil &iduser & city & birthdate \\ \hline
-Définition & Index, Cléf Primaire & Cléf \'Etrangère Lié à la table Users & Ville & date de naissance\\ \hline
-Type & int & int & text & date\\ \hline
-Exemple & 1 & 1 & rennes & 03 07 1993  \\ \hline
-... & ... & ... & ... & ... \\
-\end{tabular}
-\end{center}
-
-
-\begin{center}
-\begin{tabular}{| c | c | c | c | }
-\hline
--> & email & successpoints & nbsuccessdone\\ \hline
--> & Email de l'utilisateur & Nb dePoint de succes & Nb de succès fait\\ \hline
--> & text & int & int\\ \hline
--> & fchassing@gmail.com & 1029 & 10\\ \hline
-... & ... & ... & ... \\
-\end{tabular}
-\end{center}
 
 \subsubsection{Table Medias}
 
@@ -291,28 +257,6 @@ Exemple & 1 & 1 & rennes & 03 07 1993  \\ \hline
 \item successid : ID du succès associé : unsigned int ForeignKey(Table SuccessList)
 \end{itemize}
 
-\begin{table}[h]
-\centering
-\begin{tabular}{|c|c|c|c|c|c|}
-\hline
-Colonne    & idmedia   & idtype            & path               & autorid  & description             \\ \hline
-Définition & Index, PK & Type de video, FK & Lien vers la video & Auteur FK & Description de la video \\ \hline
-Type       & int       & int               & text               & int       & text                    \\ \hline
-...        & ...       & ...               & ...                & ...       & ...                    
-\end{tabular}
-\end{table}
-
-\begin{table}[h]
-\centering
-\begin{tabular}{|c|c|c|c|}
-\hline
--\textgreater & title             & viewnb         & successid             \\ \hline
--\textgreater & Titre de la video & Nombre de vues & Id du succès associer, FK \\ \hline
--\textgreater & text              & unsigned int   & unsigned int          \\ \hline
-...           & ...               & ...            & ...                  
-\end{tabular}
-\end{table}
-
 \subsubsection{Table SuccessList}
 
 \begin{itemize}
@@ -323,17 +267,6 @@ Type       & int       & int               & text               & int       & te
 \item pointsvalue : nombre de point donnés à la réussite du succès : int.
 \item categoryid : catégorie du succès : unsigned int, ForeignKey.
 \end{itemize}
-
-\begin{table}[h]
-\centering
-\begin{tabular}{|c|c|c|c|c|c|}
-\hline
-Colonne     & successid & title           & description           & videoexemple & pointsvalue   \\ \hline
-Description & Index, PK & titre du succès & description du succes & Id Video, FK & pts donné \\ \hline
-Type        & int       & text            & text                  & unsigned int & int       \\ \hline
-...         & ...       & ...             & ...                   & ...          & ...      
-\end{tabular}
-\end{table}
 
 \subsubsection{Table SuccessDone}
 
