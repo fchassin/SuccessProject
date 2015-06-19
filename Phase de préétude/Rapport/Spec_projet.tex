@@ -218,12 +218,21 @@ Nous allons tenter de respecter au plus proche la 3eme forme de normalisation de
 \item Toutes les données sont atomiques 
 \item Chaque champ contient une valeure scalaire (pas de liste de valeurs, etc)
 \item Les valeurs sont non répétitives
-\item Chaque attribut n'appartenant pas à la clé doit se trouver dans une table différente (ForeignKey)
+\item Chaque attribut n'appartenant pas à la clé doit se trouver dans une table différente (ForeignKey et jointures)
 \item Les attribus qui ne dépendent pas de la clé ne dépendent pas d'atribus ne faisant pas non plus partis de la clé (les attribus sont complètement indépendant les uns des autres), Exemple : Le pays ne dépend pas de l'utilisateur mais de la ville ou il habite.
 \item Les valeurs sont constantes dans le temps (Seul point complexe pour le nombre de vues, vote, commentaires)
 \end{itemize}
 
+Tout en évitant le plus possible les tables obèses, on gardera une cohérence dans l'organisation des données et dans la normalisation.
+
 \subsubsection{Table Users}
+
+\begin{itemize}
+\item iduser : Index et PrimaryKey : unsigned int.
+\item pseudo : Pseudo de l'utilisateur : text.
+\item password : Mot de passe hashé de l'utilisateur : text(sha2(256bit))
+\item lastip : dernière ip de connexion : IP(type ip de postgresql)
+\end{itemize}
 
 \begin{center}
 \begin{tabular}{| c | c | c | c | }
@@ -238,10 +247,19 @@ Exemple & 1 & Fchassing & 77de[...]092  \\ \hline
 
 \subsubsection{Table Profils}
 
+\begin{itemize}
+\item idprofil : Index PrimaryKey : unsigned int.
+\item iduser : id de l'utilisateur associé : unsigned int ForeignKey.
+\item email : E-Mail de l'utilisateur : text.
+\item birthdate : Date de naissance de l'utilisateur : Date (dd mm yyyy)
+\item city : Ville de l'utilisateur : text.
+\item successpoints : Nombre de point de succès de l'utilisateur, est recalculé à la connexion de l'utilisateur, la réussite d'un succes (validation), "à la demande de l'utilisateur ?".
+\end{itemize}
+
 \begin{center}
 \begin{tabular}{| c | c | p{3cm} | c | c |}
 \hline
-Colonne & index &iduser & city & birthdate \\ \hline
+Colonne & idprofil &iduser & city & birthdate \\ \hline
 Définition & Index, Cléf Primaire & Cléf \'Etrangère Lié à la table Users & Ville & date de naissance\\ \hline
 Type & int & int & text & date\\ \hline
 Exemple & 1 & 1 & rennes & 03 07 1993  \\ \hline
@@ -263,11 +281,21 @@ Exemple & 1 & 1 & rennes & 03 07 1993  \\ \hline
 
 \subsubsection{Table Medias}
 
+\begin{itemize}
+\item idmedia : Index, PrimaryKey : unsigned int
+\item idtype : Type de media : unsigned int ForeignKey. (Table MediaTypes)
+\item path : Lien vers le media (nom d'enregistrement sur le DD) : text.
+\item autorid : Auteur de la video : ForeignKey (Table Users)
+\item title : Titre de la video : text.
+\item description : description de la video : text.
+\item successid : ID du succès associé : unsigned int ForeignKey(Table SuccessList)
+\end{itemize}
+
 \begin{table}[h]
 \centering
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
-Colonne    & idmedia   & idtype            & path               & auteurid  & description             \\ \hline
+Colonne    & idmedia   & idtype            & path               & autorid  & description             \\ \hline
 Définition & Index, PK & Type de video, FK & Lien vers la video & Auteur FK & Description de la video \\ \hline
 Type       & int       & int               & text               & int       & text                    \\ \hline
 ...        & ...       & ...               & ...                & ...       & ...                    
@@ -287,20 +315,25 @@ Type       & int       & int               & text               & int       & te
 
 \subsubsection{Table SuccessList}
 
+\begin{itemize}
+\item successid : Index, PrimaryKey : unsigned int.
+\item title : Titre du succès : text.
+\item description : Description du succès : text.
+\item videoexempleid : Id de la video d'exemple : unsigned int ForeignKey (Table Media).
+\item pointsvalue : nombre de point donnés à la réussite du succès : int.
+\item categoryid : catégorie du succès : unsigned int, ForeignKey.
+\end{itemize}
+
 \begin{table}[h]
 \centering
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
-Colonne     & successid & title           & description           & videoexemple & nbpts     \\ \hline
+Colonne     & successid & title           & description           & videoexemple & pointsvalue   \\ \hline
 Description & Index, PK & titre du succès & description du succes & Id Video, FK & pts donné \\ \hline
 Type        & int       & text            & text                  & unsigned int & int       \\ \hline
 ...         & ...       & ...             & ...                   & ...          & ...      
 \end{tabular}
 \end{table}
-
-\begin{itemize}
-\item categoryid : catégorie du succès : unsigned int, ForeignKey.
-\end{itemize}
 
 \subsubsection{Table SuccessDone}
 
@@ -332,6 +365,19 @@ Type        & int       & text            & text                  & unsigned int
 \end{itemize}
 
 \subsubsection{Autres Tables}
+
+\begin{itemize}
+\item Table MediaType
+\begin{itemize}
+\item typeid : index, PrimaryKey : unsigned int.
+\item type : type de media(photo or video ~2lignes) : text.
+\end{itemize}
+\item Table SuccessState
+\begin{itemize}
+\item successstateid : Index, PrimaryKey
+\item state : Etat du succès (accepté, en attente de validation, signalé, supprimé) : text.
+\end{itemize}
+\end{itemize}
 
 \subsection{Hébergement}
 \subsection{Sécurité}
